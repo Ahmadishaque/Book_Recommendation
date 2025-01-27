@@ -29,21 +29,42 @@ The recommendation system is designed to analyze a user-book ratings dataset wit
 
 ## Dataset
 
-The project uses two main datasets:
+The project uses three main datasets and an intermediate libsvm file generated after preprocessing:
 
-1. **User-Book Ratings Matrix:**
-   - Stored in sparse format (e.g., LIBSVM format).
-   - Contains user ratings for various books.
-
-2. **Books Metadata:**
-   - CSV file containing book details, such as ISBN, title, and author.
+1. **Books Metadata:**
+   - CSV file containing book details, such as ISBN, title, and author etc.
 
 Example of book data:
 
-| ISBN           | Title                      | Author           |
-|----------------|----------------------------|------------------|
-| 9781234567890  | Example Book Title 1       | Author Name 1    |
-| 9780987654321  | Example Book Title 2       | Author Name 2    |
+| ISBN        | Title              | Author                | Year | Publisher                |
+|-------------|--------------------|-----------------------|------|--------------------------|
+| 0195153448  | Classical Mythology | Mark P. O. Morford    | 2002 | Oxford University Press  |
+| 0002005018  | Clara Callan        | Richard Bruce Wright  | 2001 | HarperFlamingo Canada    |
+
+2. **Ratings Metadata:**
+   - CSV file containing rating details, such as User-ID, ISBN, and Rating.
+
+Example of ratings data:
+
+| User-ID | ISBN       | Rating |
+|---------|------------|--------|
+| 276725  | 034545104X | 0      |
+| 276726  | 0155061224 | 5      |
+
+3. **Ratings Metadata:**
+   - CSV file containing user details, such as User-ID, and Age.
+
+Example of user data:
+
+| User-ID | Age |
+|---------|-----|
+| 1       | 20  |
+| 2       | 18  |
+
+4. **User-Book Ratings Matrix:**
+   - Stored in sparse format (LIBSVM format).
+   - Contains user ratings for various books.
+   - Each row represents a unique user, containing the bookID and the corresponding rating the user has given that book.
 
 ---
 
@@ -52,10 +73,12 @@ Example of book data:
 ```
 .
 ├── notebooks
-│   └── ProjectGroup17_IFT511.ipynb   # Jupyter Notebook with implementation
+│   └── Book_Recommendation_system.ipynb   # Jupyter Notebook with implementation
 ├── data
-│   ├── UserBookMatrix.libsvm         # Sparse matrix in LIBSVM format
-│   └── Books.csv                     # Metadata for books
+│   ├── Books.csv                     # Metadata for books
+│   ├── Users.csv                     # Metadata for users
+│   ├── Ratings.csv                   # Metadata for ratings
+│   └── UserBookMatrix.libsvm         # Intermediate dataset generated that contains the sparse matrix in LIBSVM format
 ├── output
 │   └── Book_Recommendations.csv      # Final recommendations
 ├── README.md                         # Project documentation
@@ -87,11 +110,11 @@ Ensure you have the following installed:
    pip install -r requirements.txt
    ```
 
-3. Place the `UserBookMatrix.libsvm` and `Books.csv` files in the `data/` directory.
+3. Place the `Books.csv`, `Users.csv`, `Ratings.csv`, and the `UserBookMatrix.libsvm` files in the `data/` directory.
 
 4. Run the Jupyter notebook for the implementation:
    ```bash
-   jupyter notebook notebooks/ProjectGroup17_IFT511.ipynb
+   jupyter notebook notebooks/Book_Recommendation_system.ipynb
    ```
 
 ---
@@ -138,4 +161,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Author
 **[Your Name]**  
 Master's Student, Arizona State University  
-Feel free to connect via [LinkedIn](https://linkedin.com/in/your-profile) or explore more projects on [GitHub](https://github.com/your_username).
+Feel free to connect via [LinkedIn](https://linkedin.com/in/ahmadishaquekarimi/) or explore more projects on [GitHub](https://github.com/Ahmadishaque).
